@@ -1,0 +1,68 @@
+plugins 
+{
+    id 'java'
+    id 'maven-publish'  // for JitPack
+}
+
+group = 'com.github.francitoshi'
+version = '0.1.65'
+//remember to execute 'git tag -a x.x.x -m "Version x.x.x"'
+
+repositories 
+{
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+//run "./gradlew dependencies --configuration runtimeClasspath" to verify version problems
+
+def bouncycastleVersion = '1.83'
+def nutVersion = version
+
+dependencies
+{
+    implementation "com.github.francitoshi:nut-base:${nutVersion}"
+    implementation "com.github.francitoshi:nut-core:${nutVersion}"
+    implementation "com.github.francitoshi:nut-headless:${nutVersion}"
+
+    compileOnly "org.bouncycastle:bcprov-jdk18on:${bouncycastleVersion}"
+    compileOnly "org.bouncycastle:bcpkix-jdk18on:${bouncycastleVersion}"
+
+    compileOnly 'org.apache.commons:commons-compress:1.26.2'
+   
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+
+    testImplementation 'org.apache.commons:commons-csv:1.14.0'
+}
+
+java 
+{
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+//    withJavadocJar()
+}
+
+wrapper 
+{
+    gradleVersion = "8.2"
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+test 
+{
+    useJUnitPlatform()
+}
+
+publishing 
+{
+    publications 
+    {
+        maven(MavenPublication) 
+        {
+            groupId = 'com.github.francitoshi'
+            artifactId = 'nut-headless'
+            version = project.version
+            from components.java
+        }
+    }
+}
