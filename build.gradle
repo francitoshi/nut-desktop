@@ -5,7 +5,7 @@ plugins
 }
 
 group = 'com.github.francitoshi'
-version = '0.1.72'
+version = '0.1.74'
 //remember to execute 'git tag -a x.x.x -m "Version x.x.x"'
 
 repositories 
@@ -32,6 +32,9 @@ dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
 
     testImplementation 'org.apache.commons:commons-csv:1.14.0'
+
+    testImplementation 'de.mkammerer:argon2-jvm:2.12'
+
 }
 
 java 
