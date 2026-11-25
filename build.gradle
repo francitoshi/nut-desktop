@@ -1,3 +1,5 @@
+//NUT Base (NUT Utility Toolkit Desktop) - generic java 17 library
+
 plugins 
 {
     id 'java'
@@ -31,9 +33,7 @@ dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
 
     testImplementation 'org.apache.commons:commons-csv:1.14.0'
-
     testImplementation 'de.mkammerer:argon2-jvm:2.12'
-
 }
 
 java 
@@ -42,12 +42,6 @@ java
     targetCompatibility = JavaVersion.VERSION_17
     withSourcesJar()
 //    withJavadocJar()
-}
-
-wrapper 
-{
-    gradleVersion = "8.2"
-    distributionType = Wrapper.DistributionType.ALL
 }
 
 test 
@@ -68,3 +62,10 @@ publishing
         }
     }
 }
+
+wrapper 
+{
+    gradleVersion = "8.14.8"
+    distributionType = Wrapper.DistributionType.ALL
+}
+
